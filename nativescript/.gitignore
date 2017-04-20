@@ -1,0 +1,9 @@
+node_modules
+app
+yarn.lock
+platforms
+hooks
+
+src/app
+src/node_modules
+src/platforms

@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "app/*": [
+                "app/app/*"
+            ],
+            "~/app/*": [
+                "app/app/*"
+            ]
+        },
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "removeComments": true,
+        "noLib": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "dom"
+        ],
+        "pretty": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "noImplicitUseStrict": false,
+        "noFallthroughCasesInSwitch": true,
+        "typeRoots": [
+            "node_modules/@types",
+            "node_modules"
+        ],
+        "types": [
+            "jasmine"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "platforms",
+        "**/*.aot.ts",
+        "src",
+        "**/*.module.ts"
+    ]
+}
