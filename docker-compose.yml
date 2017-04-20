@@ -1,0 +1,7 @@
+version: "2"
+services:
+  maestro-angular-seed:
+    build: .
+    image: maestroseed
+    ports:
+      - "8080:80"
