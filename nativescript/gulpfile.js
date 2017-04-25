@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const rename = require('gulp-rename');
+const replace = require('gulp-string-replace')
 const debug = require('gulp-debug');
 
 const SRC = 'src/';
@@ -38,6 +39,13 @@ gulp.task('tns.Typescript', () => {
     return gulp.src(['src/**/*.tns.ts'], {follow: true})
         .pipe(rename(removeTns))
         // .pipe(debug({title: 'tns.Typescript'}))
+        .pipe(gulp.dest(DEST, {overwrite: true}));
+});
+
+gulp.task('tns.ComponentStyles', () => {
+    return gulp.src(['src/**/*.component.ts'], {follow: true})
+        .pipe(replace('.scss\'', '.css\''))
+        // .pipe(debug({title: 'tns.ComponentStyles'}))
         .pipe(gulp.dest(DEST, {overwrite: true}));
 });
 
@@ -88,7 +96,8 @@ gulp.task(
         'project.Styles',
         'tns.Templates',
         'tns.Styles',
-        'tns.Typescript'
+        'tns.Typescript',
+        'tns.ComponentStyles'
     )
 );
 
