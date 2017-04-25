@@ -10,8 +10,8 @@ function removeTns (path) {
     path.basename = path.basename.replace('.tns', '');
 }
 
-function removeMinWH480 (path) {
-    path.basename = path.basename.replace('.minWH480', '');
+function removePhone (path) {
+    path.basename = path.basename.replace('.phone', '');
 }
 
 gulp.task('resources.App_Resources', () => {
@@ -64,25 +64,25 @@ gulp.task('tns.Styles', () => {
 });
 
 gulp.task('phone.Typescript', () => {
-    return gulp.src(['src/**/*.tns.minWH480.ts'], {follow: true})
+    return gulp.src(['src/**/*.tns.phone.ts'], {follow: true})
         .pipe(rename(removeTns))
-        .pipe(rename(removeMinWH480))
+        .pipe(rename(removePhone))
         .pipe(debug({title: 'phone.Typescript'}))
         .pipe(gulp.dest(DEST, {overwrite: true}));
 });
 
 gulp.task('phone.Templates', () => {
-    return gulp.src(['src/**/*.tns.minWH480.html', 'src/**/*.tns.ios.minWH480.html', 'src/**/*.tns.android.minWH480.html'], {follow: true})
+    return gulp.src(['src/**/*.tns.phone.html', 'src/**/*.tns.ios.phone.html', 'src/**/*.tns.android.phone.html'], {follow: true})
         .pipe(rename(removeTns))
-        .pipe(rename(removeMinWH480))
+        .pipe(rename(removePhone))
         .pipe(debug({title: 'phone.Templates'}))
         .pipe(gulp.dest(DEST, {overwrite: true}));
 });
 
 gulp.task('phone.Styles', () => {
-    return gulp.src(['src/**/*.tns.minWH480.scss', 'src/**/*.tns.ios.minWH480.scss', 'src/**/*.tns.android.minWH480.scss'], {follow: true})
+    return gulp.src(['src/**/*.tns.phone.scss', 'src/**/*.tns.ios.phone.scss', 'src/**/*.tns.android.phone.scss'], {follow: true})
         .pipe(rename(removeTns))
-        .pipe(rename(removeMinWH480))
+        .pipe(rename(removePhone))
         .pipe(debug({title: 'phone.Styles'}))
         .pipe(gulp.dest(DEST, {overwrite: true}));
 });
