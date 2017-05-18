@@ -7,6 +7,7 @@ Build truly web and native applications using NativeScript and Angular. This see
 - Lazy Loaded Modules
 - Angular CLI // Webpack // Testing
 - Target Phone and Tablet Templates Individually
+- Docker build provided using NGINX to serve web content and load balance reverse proxied backends. (See nginx folder for setup instructions)
 
 | | |
 |:---: |:---:|

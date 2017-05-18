@@ -1,11 +1,11 @@
 # You are free to change the contents of this file
 FROM nginx
 
-# Variables
-ARG STAGE=dev
+# NGINX configurations
+COPY ./nginx/conf.d /etc/nginx/conf.d
 
-# Configure for angular fallback routes
-COPY ./nginx/nginx.${STAGE}.conf /etc/nginx/nginx.conf
+# SSL Certs
+COPY ./nginx/keys /etc/nginx/keys
 
 # Copy built app to wwwroot
 COPY dist /usr/share/nginx/html
