@@ -1,5 +1,7 @@
 // -----------------------------------------------------------
 // version 1.00
+// @author Nathan Walker
+// @author Sean Perkins
 // -----------------------------------------------------------
 "use strict";
 
@@ -12,6 +14,7 @@ var path = require('path');
 var webAppPath = './src/app';
 var webAssetsPath = './src/assets';
 var nativescriptAppPath = './nativescript/src/app/';
+var nativescriptAssetsPath = './nativescript/src/assets';
 
 // Root SymLink Code for Windows
 if (process.argv.length > 2) {
@@ -30,11 +33,13 @@ console.log("Configuring...");
 
 // remove previous symlinks if they exist
 try {
-  if (fs.existsSync(resolve(nativescriptAppPath))) {
-    fs.unlinkSync(resolve(nativescriptAppPath));
-  }
-} catch (err) {
-}
+    if (fs.existsSync(resolve(nativescriptAppPath))) {
+        fs.unlinkSync(resolve(nativescriptAppPath));
+    }
+    if (fs.existsSync(resolve(nativescriptAssetsPath))) {
+        fs.unlinkSync(resolve(nativescriptAssetsPath));
+    }
+} catch (err) {}
 
 // We need to create a symlink
 try {
@@ -69,14 +74,14 @@ return 0;
 function AttemptRootSymlink() {
 
     if (process.platform === 'win32') {
-      var curPath = resolve("./");
-      if (debugging) {
-          console.log("RootSymlink Base path is", curPath);
-      }
-      cp.execSync("powershell -Command \"Start-Process 'node' -ArgumentList '"+curPath+"/install.js symlink' -verb runas\"");
+        var curPath = resolve("./");
+        if (debugging) {
+            console.log("RootSymlink Base path is", curPath);
+        }
+        cp.execSync("powershell -Command \"Start-Process 'node' -ArgumentList '" + curPath + "/install.js symlink' -verb runas\"");
     } else {
-      console.log("To automatically create a SymLink between your web app and NativeScript, we need root for a second.");
-      cp.execSync("sudo "+process.argv[0] + " " + process.argv[1] +" symlink");
+        console.log("To automatically create a SymLink between your web app and NativeScript, we need root for a second.");
+        cp.execSync("sudo " + process.argv[0] + " " + process.argv[1] + " symlink");
     }
 }
 
@@ -84,9 +89,12 @@ function AttemptRootSymlink() {
  * Create the symlink when running as root
  */
 function createRootSymLink() {
-    var li1 = process.argv[1].lastIndexOf('\\'), li2 = process.argv[1].lastIndexOf('/');
-    if (li2 > li1) { li1 = li2; }
-    var AppPath = process.argv[1].substring(0,li1);
+    var li1 = process.argv[1].lastIndexOf('\\'),
+        li2 = process.argv[1].lastIndexOf('/');
+    if (li2 > li1) {
+        li1 = li2;
+    }
+    var AppPath = process.argv[1].substring(0, li1);
     var p1 = resolve(AppPath + "/" + nativescriptAppPath);
     var p2 = resolve(AppPath + "/" + webAppPath);
     if (debugging) {
@@ -103,6 +111,7 @@ function createSymLink() {
         console.log("Attempting to Symlink", webAppPath, nativescriptAppPath);
     }
     fs.symlinkSync(resolve(webAppPath), resolve(nativescriptAppPath), 'junction');
+    fs.symlinkSync(resolve(webAssetsPath), resolve(nativescriptAssetsPath), 'junction');
 }
 
 function splitPath(v) {
@@ -123,22 +132,37 @@ function resolve(v) {
     var resolvePath = splitPath(v);
 
     // Eliminate a trailing slash/backslash
-    if (cwdPath[cwdPath.length-1] === "") { cwdPath.pop(); }
+    if (cwdPath[cwdPath.length - 1] === "") {
+        cwdPath.pop();
+    }
 
-    if (v[0] === '/' || v[0] === "\\") { cwdPath = []; }
-    for (var i=0;i<resolvePath.length;i++) {
-        if (resolvePath[i] === '.' || resolvePath[i] === "") { continue; }
-        if (resolvePath[i] === '..') { cwdPath.pop(); }
-        else { cwdPath.push(resolvePath[i]); }
+    if (v[0] === '/' || v[0] === "\\") {
+        cwdPath = [];
+    }
+    for (var i = 0; i < resolvePath.length; i++) {
+        if (resolvePath[i] === '.' || resolvePath[i] === "") {
+            continue;
+        }
+        if (resolvePath[i] === '..') {
+            cwdPath.pop();
+        } else {
+            cwdPath.push(resolvePath[i]);
+        }
     }
     if (process.platform === 'win32') {
         var winResult = cwdPath.join("\\");
-        if (winResult[winResult.length-1] === "\\") { winResult = winResult.substring(0, winResult.length - 1); }
+        if (winResult[winResult.length - 1] === "\\") {
+            winResult = winResult.substring(0, winResult.length - 1);
+        }
         return winResult;
     } else {
-		var result = cwdPath.join('/');
-		if (result[0] !== '/') { result = '/' + result; }
-		if (result[result.length-1] === '/') { result = result.substring(0, result.length - 1); }
+        var result = cwdPath.join('/');
+        if (result[0] !== '/') {
+            result = '/' + result;
+        }
+        if (result[result.length - 1] === '/') {
+            result = result.substring(0, result.length - 1);
+        }
         return result;
     }
 

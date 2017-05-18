@@ -1,10 +1,10 @@
 {
-    "name": "maestro-seed",
+    "name": "angular-native-seed",
     "version": "0.0.0",
     "scripts": {
         "postinstall": "node symlink.js",
         "ng": "ng",
-        "start": "ng serve",
+        "start": "ng serve --proxy-config proxy.conf.json",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
@@ -13,6 +13,7 @@
     },
     "private": true,
     "dependencies": {
+        "@angular/animations": "^4.0.3",
         "@angular/common": "^4.0.0",
         "@angular/compiler": "^4.0.0",
         "@angular/core": "^4.0.0",
@@ -21,6 +22,8 @@
         "@angular/platform-browser": "^4.0.0",
         "@angular/platform-browser-dynamic": "^4.0.0",
         "@angular/router": "^4.0.0",
+        "@ngx-translate/core": "^6.0.1",
+        "@ngx-translate/http-loader": "0.0.3",
         "core-js": "^2.4.1",
         "rxjs": "^5.1.0",
         "zone.js": "^0.8.5"

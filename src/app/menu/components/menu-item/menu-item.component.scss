@@ -1,0 +1,17 @@
+
+:host {
+    margin:0 20px;
+}
+
+a {
+    color:#fff;
+    text-decoration: none;
+    font-size:15px;
+    font-weight:600;
+    &.active {
+        color: #FFEB3B;
+    }
+    &:hover {
+        text-decoration: underline;
+    }
+}

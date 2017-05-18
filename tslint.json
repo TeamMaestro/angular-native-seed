@@ -98,8 +98,8 @@
       "check-type"
     ],
 
-    "directive-selector": [true, "attribute", "maestro", "camelCase"],
-    "component-selector": [true, "element", "maestro", "kebab-case"],
+    "directive-selector": [true, "attribute", "seed", "camelCase"],
+    "component-selector": [true, "element", "seed", "kebab-case"],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,

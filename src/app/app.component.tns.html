@@ -1,1 +1,8 @@
-<Label text="NATIVE!" textWrap="true"></Label>
+<GridLayout rows="auto, *">
+    <StackLayout>
+        <seed-menu [items]="menuItems"></seed-menu>
+    </StackLayout>
+    <StackLayout class="container" row="1">
+        <router-outlet></router-outlet>
+    </StackLayout>
+</GridLayout>

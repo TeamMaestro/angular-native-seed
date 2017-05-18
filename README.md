@@ -1,28 +1,19 @@
-# Maestro Seed
+# Angular NativeScript Seed
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+Build truly web and native applications using NativeScript and Angular. This seed allows your project to share code between the environments; having complete control over dependencies.
 
-## Development server
+## Highlights
+- i18n Translations
+- Lazy Loaded Modules
+- Angular CLI // Webpack // Testing
+- Target Phone and Tablet Templates Individually
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+| | |
+|:---: |:---:|
+|![Web Preview](https://i.gyazo.com/1ba4d3be7b7332ce91bd6715dc752d8b.gif)|![Native Preview](https://i.gyazo.com/0a88b56cff9af632f618e5b123502f5f.gif)|
 
-## Code scaffolding
+# Contributors 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+[<img alt="Don Burgess" src="https://avatars1.githubusercontent.com/u/7612751?v=3&s=117" width="117">](https://github.com/db3dev) | [<img alt="Sean perkins" src="https://avatars1.githubusercontent.com/u/13732623?v=3&s=117" width="117">](https://github.com/sean-perkins) |
+:---: |:---: |
+[Don Burgess](https://github.com/db3dev) |[Sean Perkins](https://github.com/sean-perkins)|

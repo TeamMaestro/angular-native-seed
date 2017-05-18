@@ -10,3 +10,12 @@ of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
 @import 'nativescript-theme-core/css/core.light.css';
+
+.container {
+    margin:40;
+}
+
+.h1 {
+    font-size:32px;
+    font-weight:bold;
+}

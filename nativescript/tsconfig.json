@@ -38,7 +38,6 @@
         "node_modules",
         "platforms",
         "**/*.aot.ts",
-        "src",
-        "**/*.module.ts"
+        "src"
     ]
 }

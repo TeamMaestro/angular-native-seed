@@ -1,8 +1,9 @@
 {
-  "description": "Maestro Native",
+  "name": "angular-native-seed",
+  "version": "0.0.0",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "com.mobileagility.maestro",
+    "id": "com.domain.project",
     "tns-ios": {
       "version": "2.5.0"
     }
@@ -17,6 +18,8 @@
     "@angular/platform-browser": "~4.0.0",
     "@angular/platform-browser-dynamic": "~4.0.0",
     "@angular/router": "~4.0.0",
+    "@ngx-translate/core": "^6.0.1",
+    "@ngx-translate/http-loader": "0.0.3",
     "nativescript-angular": "~1.5.1",
     "nativescript-theme-core": "~1.0.2",
     "reflect-metadata": "~0.1.8",
@@ -62,6 +65,7 @@
     "build.phone-android-bundle": "npm run prepPhone && npm run build-android-bundle",
     "build.tablet-android-bundle": "npm run prepTablet && npm run build-android-bundle",
     "ns-bundle": "ns-bundle",
+    "livesync": "gulp tns.Livesync",
     "start-android-bundle": "npm run ns-bundle --android --start-app",
     "start-ios-bundle": "npm run ns-bundle --ios --start-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",
