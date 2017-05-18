@@ -33,8 +33,7 @@
   "exclude": [
     "node_modules",
     "platforms",
-    "src",
-    "**/*.module.ts"
+    "src"
   ],
   "angularCompilerOptions": {
     "skipMetadataEmit": true,

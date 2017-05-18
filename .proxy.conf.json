@@ -1,12 +1,12 @@
 {
     "/api": {
-        "target": "https://dev-loop.mobileagility.com",
-        "cookieDomainRewrite": "dev-loop.mobileagility.com",
+        "target": "https://www.example.com",
+        "cookieDomainRewrite": "example.com",
         "secure": true,
         "changeOrigin": true,
         "logLevel": "debug",
         "headers": {
-            "host": "dev-loop.mobileagility.com"
+            "host": "example.com"
         }
     }
 }
