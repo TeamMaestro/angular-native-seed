@@ -47,3 +47,6 @@ nativescript/src/node_modules
 nativescript/src/platforms
 nativescript/app/
 nativescript/node_modules
+
+# Secrets
+nginx/keys

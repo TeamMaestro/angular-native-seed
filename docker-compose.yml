@@ -5,3 +5,4 @@ services:
     image: angularnativeseed
     ports:
       - "8080:80"
+      - "443:443"
