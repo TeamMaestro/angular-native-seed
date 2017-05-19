@@ -12,9 +12,16 @@ Build truly web and native applications using NativeScript and Angular. This see
 ## How To's
 - [Integrating Angular Material (`@angular/material`)](https://github.com/TeamMaestro/angular-native-seed/wiki/Integrating-Material-for-Web)
 
-| | |
+## Images
+### Web
+![Web Preview](https://i.gyazo.com/1ba4d3be7b7332ce91bd6715dc752d8b.gif)
+### Native
+|Android|iOS|
 |:---: |:---:|
-|![Web Preview](https://i.gyazo.com/1ba4d3be7b7332ce91bd6715dc752d8b.gif)|![Native Preview](https://i.gyazo.com/0a88b56cff9af632f618e5b123502f5f.gif)|
+|![Android Preview](https://i.gyazo.com/10ed027b22c8a6ed1bc159480f89e340.gif)|![iOS Preview](https://i.gyazo.com/0a88b56cff9af632f618e5b123502f5f.gif)|
+
+### Desktop
+![Desktop Preview](https://i.gyazo.com/a921ba983fcb909e70cfc055e79c9ec6.gif)
 
 # Contributors 
 

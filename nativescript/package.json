@@ -6,6 +6,9 @@
     "id": "com.domain.project",
     "tns-ios": {
       "version": "2.5.0"
+    },
+    "tns-android": {
+      "version": "3.0.0"
     }
   },
   "dependencies": {
@@ -31,12 +34,16 @@
     "@angular/compiler-cli": "~4.0.0",
     "@ngtools/webpack": "1.2.13",
     "@types/jasmine": "^2.5.47",
+    "babel-traverse": "6.24.1",
+    "babel-types": "6.24.1",
+    "babylon": "6.17.1",
     "copy-webpack-plugin": "~4.0.1",
     "extract-text-webpack-plugin": "~2.1.0",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-debug": "^3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-string-replace": "^0.4.0",
+    "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-android-snapshot": "^0.*.*",
     "nativescript-dev-sass": "^1.1.0",
