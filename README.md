@@ -9,6 +9,9 @@ Build truly web and native applications using NativeScript and Angular. This see
 - Target Phone and Tablet Templates Individually
 - Docker build provided using NGINX to serve web content and load balance reverse proxied backends. (See nginx folder for setup instructions)
 
+## How To's
+- [Integrating Angular Material (`@angular/material`)](https://github.com/TeamMaestro/angular-native-seed/wiki/Integrating-Material-for-Web)
+
 | | |
 |:---: |:---:|
 |![Web Preview](https://i.gyazo.com/1ba4d3be7b7332ce91bd6715dc752d8b.gif)|![Native Preview](https://i.gyazo.com/0a88b56cff9af632f618e5b123502f5f.gif)|
