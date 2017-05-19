@@ -1,9 +1,14 @@
 node_modules
-app
 yarn.lock
 platforms
 hooks
 
+app/**/*
+!app/vendor-platform.android.ts
+!app/vendor-platform.ios.ts
+!app/vendor.ts
+
 src/app
+src/assets
 src/node_modules
 src/platforms

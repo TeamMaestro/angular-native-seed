@@ -10,5 +10,8 @@
     "about": {
         "title": "About",
         "description": "This component was rendered from a lazy-loaded module."
+    },
+    "phone": {
+        "edition": "Phone Edition!"
     }
 }

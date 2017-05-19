@@ -17,7 +17,7 @@ module.exports = function (platform, destinationApp) {
     //Vendor entry with third party libraries.
     entry.vendor = "./vendor";
     // app.css bundle
-    entry["app.css"] = "./app.css";
+    entry["app.scss"] = "./app.scss"; // Changed from .css to .scss
 
     var plugins = [
         new ExtractTextPlugin("app.css"),
@@ -31,7 +31,7 @@ module.exports = function (platform, destinationApp) {
         }),
         // Copy assets to out dir. Add your own globs as needed.
         new CopyWebpackPlugin([
-            { from: "app.css" },
+            { from: "app.scss" }, // Changed from .css to .scss
             { from: "css/**" },
             { from: "fonts/**" },
             { from: "**/*.jpg" },
@@ -47,7 +47,7 @@ module.exports = function (platform, destinationApp) {
         // Angular AOT compiler
         new AotPlugin({
             tsConfigPath: "tsconfig.aot.json",
-            entryModule: path.resolve(__dirname, "app/src/app.module#AppModule"),
+            entryModule: path.resolve(__dirname, "app/app/app.module#AppModule"), // Changed app/src to app/app
             typeChecking: false
         }),
         new nsWebpack.StyleUrlResolvePlugin({platform}),
