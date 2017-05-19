@@ -5,7 +5,7 @@
   "nativescript": {
     "id": "com.domain.project",
     "tns-ios": {
-      "version": "2.5.0"
+      "version": "3.0.1"
     }
   },
   "dependencies": {
@@ -32,6 +32,7 @@
     "@ngtools/webpack": "1.2.13",
     "@types/jasmine": "^2.5.47",
     "copy-webpack-plugin": "~4.0.1",
+    "del": "^2.2.2",
     "extract-text-webpack-plugin": "~2.1.0",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-debug": "^3.1.0",
@@ -41,21 +42,22 @@
     "nativescript-dev-android-snapshot": "^0.*.*",
     "nativescript-dev-sass": "^1.1.0",
     "nativescript-dev-typescript": "~0.3.5",
-    "nativescript-dev-webpack": "^0.4.0",
+    "nativescript-dev-webpack": "~0.4.0",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.0.2",
-    "rimraf": "^2.6.1",
     "typescript": "~2.1.0",
     "webpack": "~2.3.3",
     "webpack-sources": "~0.2.3"
   },
   "scripts": {
-    "prepPhone": "rimraf ./app && gulp build.Phone",
-    "prepTablet": "rimraf ./app && gulp build.Default",
-    "ios": "npm run prepTablet && tns run ios",
-    "ios.phone": "npm run prepPhone && tns run ios",
-    "android": "npm run prepTablet && tns run android",
-    "android.phone": "npm run prepPhone && tns run android",
+    "prepPhone": "gulp build.Phone",
+    "prepTablet": "gulp build.Default",
+    "prepCLIPhone": "gulp build.cli.Phone",
+    "prepCLITablet": "gulp build.cli.Default",
+    "ios": "npm run prepCLITablet && tns run ios",
+    "ios.phone": "npm run prepCLIPhone && tns run ios",
+    "android": "npm run prepCLITablet && tns run android",
+    "android.phone": "npm run prepCLIPhone && tns run android",
     "phone-ios-bundle": "npm run prepPhone && npm run start-ios-bundle",
     "tablet-ios-bundle": "npm run prepTablet && npm run start-ios-bundle",
     "build.phone-ios-bundle": "npm run prepPhone && npm run build-ios-bundle",
