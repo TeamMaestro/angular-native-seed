@@ -48,5 +48,9 @@ nativescript/src/platforms
 nativescript/app/
 nativescript/node_modules
 
+electron/src/app/
+electron/dist
+electron/node_modules
+
 # Secrets
 nginx/keys

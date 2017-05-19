@@ -1,10 +1,6 @@
 node_modules
 app
-dist
 yarn.lock
-platforms
-hooks
 
 src/app
 src/node_modules
-src/platforms

@@ -1,43 +1,56 @@
 // -----------------------------------------------------------
-// version 1.00
+// version 1.1.0
 // @author Nathan Walker
 // @author Sean Perkins
 // -----------------------------------------------------------
 "use strict";
 
-var debugging = false;
+var debugging = true;
 
 var fs = require('fs');
 var cp = require('child_process');
 var path = require('path');
+var base = process.env.PWD;
+// The main folder path of the project
+var main = {
+    app: './src/app',
+    assets: './src/assets'
+};
 
-var webAppPath = './src/app';
-var webAssetsPath = './src/assets';
-var nativescriptAppPath = './nativescript/src/app/';
-var nativescriptAssetsPath = './nativescript/src/assets';
+// The accessory integrations (Nativescript, Electron, etc.)
+var paths = [
+    {
+        app: './nativescript/src/app',
+        assets: './nativescript/src/assets'
+    },
+    {
+        app: './electron/src/app',
+        assets: './electron/src/assets'
+    }
+];
 
 // Root SymLink Code for Windows
 if (process.argv.length > 2) {
     if (process.argv[2] === 'symlink') {
         createRootSymLink();
-        console.log("Created Symlink");
+        console.log('Created Symlink');
     }
     return 0;
 }
 
-
-// console.log("Installing NativeScript support files...");
-// cp.execSync('npm install', {cwd: 'nativescript'});
-
-console.log("Configuring...");
+console.log('Configuring...', base);
 
 // remove previous symlinks if they exist
 try {
-    if (fs.existsSync(resolve(nativescriptAppPath))) {
-        fs.unlinkSync(resolve(nativescriptAppPath));
-    }
-    if (fs.existsSync(resolve(nativescriptAssetsPath))) {
-        fs.unlinkSync(resolve(nativescriptAssetsPath));
+    for (let _path of paths) {
+        for (let key of Object.keys(_path)) {
+            if (fs.existsSync(resolve(_path[key]))) {
+                if (debugging) {
+                    console.log('Unlinking', _path[key]);
+                }
+                fs.unlinkSync(resolve(_path[key]));
+            }
+        }
     }
 } catch (err) {}
 
@@ -46,25 +59,20 @@ try {
     createSymLink();
 } catch (err) {
     if (debugging) {
-        console.log("Symlink error: ", err);
+        console.log('Symlink error: ', err);
     }
-    // Failed, and doesnt exist which means they weren't running root; so lets try to get root
-    err.code === 'EEXIST' ? console.log("A symlink already exists.") : AttemptRootSymlink();
+    // Failed, and doesn't exist which means they weren't running root; so lets try to get root
+    err.code === 'EEXIST' ? console.log('A symlink already exists.') : AttemptRootSymlink();
 }
 
-// Might silent fail on OSX, so we have to see if it exists
-// if (!fs.existsSync(resolve(nativescriptComponentsPath))) {
-//     AttemptRootSymlink();
-// }
-
-if (!fs.existsSync(resolve(nativescriptAppPath))) {
-    console.log("We were unable to create a symlink  - from -");
-    console.log("  ", resolve(webAppPath), "    - to - ");
-    console.log("  ", resolve(nativescriptAppPath));
-    console.log("If you don't create this symlink, you will have to manually copy the code each time you change it.");
+for (let _path of paths) {
+    if (!fs.existsSync(resolve(_path.app))) {
+        console.log('We were unable to create a symlink  - from -');
+        console.log('  ', resolve(main.app), '    - to - ');
+        console.log('  ', resolve(_path.app));
+        console.log('If you don\'t create this symlink, you will have to manually copy the code each time you change it.');
+    }
 }
-
-
 return 0;
 
 /**
@@ -72,16 +80,16 @@ return 0;
  *
  */
 function AttemptRootSymlink() {
-
     if (process.platform === 'win32') {
-        var curPath = resolve("./");
+        var curPath = resolve('./');
         if (debugging) {
-            console.log("RootSymlink Base path is", curPath);
+            console.log('RootSymlink Base path is', curPath);
         }
-        cp.execSync("powershell -Command \"Start-Process 'node' -ArgumentList '" + curPath + "/install.js symlink' -verb runas\"");
+        cp.execSync("powershell -Command \"Start-Process 'node' -ArgumentList '" + curPath + "/symlink.js symlink' -verb runas\"");
     } else {
-        console.log("To automatically create a SymLink between your web app and NativeScript, we need root for a second.");
-        cp.execSync("sudo " + process.argv[0] + " " + process.argv[1] + " symlink");
+        console.log('Grant root access to create required SymLinks for the Angular Native Seed.');
+        cp.execSync(`sudo ln -s ${process.argv[0]} ${process.argv[1]}`);
+        //  cp.execSync(`sudo find ${base}${process.argv[0]} -iname '*.ts' -exec ln -s '{}' ${base}${process.argv[1]} \\;`);
     }
 }
 
@@ -95,23 +103,33 @@ function createRootSymLink() {
         li1 = li2;
     }
     var AppPath = process.argv[1].substring(0, li1);
-    var p1 = resolve(AppPath + "/" + nativescriptAppPath);
-    var p2 = resolve(AppPath + "/" + webAppPath);
-    if (debugging) {
-        console.log("Path: ", p1, p2);
+    var p2 = resolve(`${AppPath}/${main.app}`);
+
+    for (let _path of paths) {
+        var p1 = resolve(`${AppPath}/${_path.app}`);
+        if (debugging) {
+            console.log('Path: ', p1, p2);
+        }
+        fs.symlinkSync(p2, p1, 'junction');
     }
-    fs.symlinkSync(p2, p1, 'junction');
+
 }
 
 /**
  * Create Symlink
  */
 function createSymLink() {
-    if (debugging) {
-        console.log("Attempting to Symlink", webAppPath, nativescriptAppPath);
+    for (let _path of paths) {
+        for (let key of Object.keys(_path)) {
+            if (key in main) {
+                if (debugging) {
+                    console.log('Attempting to Symlink', main[key], _path[key]);
+                }
+                // cp.execSync(`find ${base}${main[key]} -iname '*.ts' -exec ln -vs '{}' ${base}${_path[key]} \\;`);
+                fs.symlinkSync(resolve(main[key]), resolve(_path[key]), 'junction');
+            }
+        }
     }
-    fs.symlinkSync(resolve(webAppPath), resolve(nativescriptAppPath), 'junction');
-    fs.symlinkSync(resolve(webAssetsPath), resolve(nativescriptAssetsPath), 'junction');
 }
 
 function splitPath(v) {
