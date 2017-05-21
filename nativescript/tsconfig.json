@@ -7,17 +7,25 @@
             ],
             "~/app/*": [
                 "app/app/*"
+            ],
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
             ]
         },
         "target": "es5",
         "module": "commonjs",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "noEmitHelpers": true,
+        "noEmitOnError": true,
         "declaration": false,
         "removeComments": true,
         "noLib": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
         "lib": [
-            "dom"
+            "es6",
+            "dom",
+            "es2015.iterable"
         ],
         "pretty": true,
         "allowUnreachableCode": false,
