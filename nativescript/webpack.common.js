@@ -33,6 +33,7 @@ module.exports = function (platform, destinationApp) {
         new CopyWebpackPlugin([
             { from: "app.scss" }, // Changed from .css to .scss
             { from: "css/**" },
+            { from: "assets/**" },
             { from: "fonts/**" },
             { from: "**/*.jpg" },
             { from: "**/*.png" },
