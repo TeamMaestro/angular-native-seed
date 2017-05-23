@@ -6,3 +6,5 @@ services:
     ports:
       - "8080:80"
       - "443:443"
+    volumes:
+      - ./nginx/keys/:/etc/nginx/keys
