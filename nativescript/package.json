@@ -68,6 +68,7 @@
     "build.tablet-android-bundle": "npm run prepTablet && npm run build-android-bundle",
     "ns-bundle": "ns-bundle",
     "livesync": "gulp tns.Livesync",
+    "livesync.phone": "gulp tns.Livesync.Phone",
     "start-android-bundle": "npm run ns-bundle --android --start-app",
     "start-ios-bundle": "npm run ns-bundle --ios --start-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",
