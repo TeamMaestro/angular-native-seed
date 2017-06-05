@@ -152,3 +152,17 @@ gulp.task('tns.Livesync', () => {
                 .pipe(gulp.dest(outputDest, {overwrite: true}));
         });
 });
+
+gulp.task('tns.Livesync.Phone', () => {
+    return gulp.watch([`${SRC}**/*.tns.phone.html`, `${SRC}/**/*.tns.phone.scss`, `${SRC}/**/*.component.ts`])
+        .on('change', (file) => {
+            var outputDest = file.replace(SRC, DEST);
+            outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
+            gulp.src([file])
+                .pipe(rename(removeTns))
+                .pipe(rename(removePhone))
+                .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
+                .pipe(debug({title: 'tns.Livesync.Phone'}))
+                .pipe(gulp.dest(outputDest, {overwrite: true}));
+        });
+});
