@@ -10,6 +10,22 @@ Build truly web and native applications using NativeScript and Angular. This see
 - Docker build provided using NGINX to serve web content and load balance reverse proxied backends. (See nginx folder for setup instructions)
 
 ## Getting Started
+
+Web is setup from the root.
+
+```
+npm i
+```
+
+Mobile is setup from the `nativescript` folder.
+
+```
+cd nativescript
+npm i
+```
+
+Each platform is run respective to it's folder. View available commands here:
+
 - [Seed Commands](https://github.com/TeamMaestro/angular-native-seed/wiki/Seed-Commands)
 
 ## How To's
