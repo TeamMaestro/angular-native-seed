@@ -7,6 +7,10 @@
             ],
             "~/app/*": [
                 "app/app/*"
+            ],
+            "*": [
+                "./node_modules/tns-core-modules/*",
+                "./node_modules/*"
             ]
         },
         "target": "es5",
@@ -17,7 +21,9 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
-            "dom"
+            "dom",
+            "es6",
+            "es2015.iterable"
         ],
         "pretty": true,
         "allowUnreachableCode": false,
