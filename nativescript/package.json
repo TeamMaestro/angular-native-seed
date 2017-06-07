@@ -25,6 +25,7 @@
     "reflect-metadata": "~0.1.8",
     "rxjs": "~5.3.0",
     "tns-core-modules": "^3.0.0",
+    "typescript": "~2.2.0",
     "zone.js": "~0.8.2"
   },
   "devDependencies": {
@@ -38,15 +39,16 @@
     "gulp-debug": "^3.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-string-replace": "^0.4.0",
+    "css-loader": "0.28.2",
     "nativescript-css-loader": "~0.26.0",
     "nativescript-dev-android-snapshot": "^0.*.*",
-    "nativescript-dev-sass": "^1.1.0",
-    "nativescript-dev-typescript": "~0.4.0",
-    "nativescript-dev-webpack": "~0.5.0",
+    "nativescript-dev-sass": "^1.1.1",
+    "nativescript-dev-typescript": "~0.4.5",
+    "nativescript-dev-webpack": "^0.6.2",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.0.2",
-    "typescript": "~2.2.1",
-    "webpack": "~2.5.1",
+    "typescript": "~2.2.0",
+    "webpack": "~2.6.0",
     "webpack-sources": "~0.2.3"
   },
   "scripts": {
@@ -72,6 +74,7 @@
     "start-android-bundle": "npm run ns-bundle --android --start-app",
     "start-ios-bundle": "npm run ns-bundle --ios --start-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",
-    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
+    "build-ios-bundle": "npm run ns-bundle --ios --build-app",
+    "publish-ios-bundle": "npm run ns-bundle --ios --publish-app"
   }
 }

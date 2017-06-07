@@ -40,10 +40,13 @@
             "jasmine"
         ]
     },
+    "include": [
+        "app/**/*"
+    ],
     "exclude": [
         "node_modules",
-        "platforms",
         "**/*.aot.ts",
+        "hooks",
         "src"
     ]
 }
