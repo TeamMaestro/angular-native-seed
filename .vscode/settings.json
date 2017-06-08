@@ -1,0 +1,27 @@
+{
+    "files.exclude": {
+        // "nativescript/app": true,
+        "nativescript/hooks": true,
+        "nativescript/src/app/**/*.html": {
+            "when": "$(basename).tns.html"
+        },
+        "nativescript/src/app/**/*.scss": {
+            "when": "$(basename).tns.scss"
+        },
+        "nativescript/src/app/**/*.ts": {
+            "when": "$(basename).tns.ts"
+        },
+        "nativescript/src/app/**/*.spec.ts": true
+    },
+    "files.watcherExclude": {
+        "nativescript/app/**": true,
+        "node_modules/**": true,
+        "nativescript/node_modules/**": true
+    },
+    "search.exclude": {
+        "nativescript/platforms": true,
+        "nativescript/src/app": true,
+        "nativescript/node_modules": true,
+        "nativescript/hooks": true
+    }
+}
