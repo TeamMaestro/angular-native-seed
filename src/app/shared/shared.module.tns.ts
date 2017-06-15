@@ -7,12 +7,12 @@ import { NativeScriptRouterModule } from 'nativescript-angular';
 export { NativeScriptRouterModule as RouterModule } from 'nativescript-angular';
 
 @NgModule({
-  declarations: [],
-  exports: [
-    NativeScriptModule,
-    NativeScriptFormsModule,
-    NativeScriptRouterModule
-  ],
-  schemas: [ NO_ERRORS_SCHEMA ]
+    declarations: [],
+    exports: [
+        NativeScriptModule,
+        NativeScriptFormsModule,
+        NativeScriptRouterModule
+    ],
+    schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class SharedModule { }

@@ -9,13 +9,13 @@ export { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  imports: [ CommonModule ],
-  declarations: [],
-  exports: [
-    CommonModule,
-    FormsModule,
-    RouterModule
-  ]
+    imports: [ CommonModule ],
+    declarations: [],
+    exports: [
+        CommonModule,
+        FormsModule,
+        RouterModule
+    ]
 })
 export class SharedModule {
 
