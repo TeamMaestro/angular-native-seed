@@ -10,5 +10,9 @@ export const HomeRoutes: Routes = [
     {
         path: 'about',
         loadChildren: 'app/+about/about.module#AboutModule'
+    },
+    {
+        path: 'infinite',
+        loadChildren: 'app/infinite/infinite.module#InfiniteModule'
     }
 ];

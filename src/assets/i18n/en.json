@@ -1,7 +1,8 @@
 {
     "menu": {
         "home": "Home",
-        "about": "About"
+        "about": "About",
+        "infinite": "Infinite"
     },
     "home": {
         "title": "Home",
@@ -10,6 +11,9 @@
     "about": {
         "title": "About",
         "description": "This component was rendered from a lazy-loaded module."
+    },
+    "infinite": {
+        "title": "Infinite"
     },
     "phone": {
         "edition": "Phone Edition!"
