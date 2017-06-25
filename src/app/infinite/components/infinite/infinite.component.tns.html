@@ -1,0 +1,7 @@
+<Label text="Infinite" class="h1 text-primary"></Label>
+
+<ListView [items]="items" (loadMoreItems)="addItems(10)">
+    <ng-template let-item="item">
+        <seed-item-template [name]="item"></seed-item-template>
+    </ng-template>
+</ListView>

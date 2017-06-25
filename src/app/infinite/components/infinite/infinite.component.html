@@ -1,0 +1,12 @@
+<h1 class="title"
+    [innerText]="'infinite.title' | translate"></h1>
+
+<div class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollUpDistance]="1.5"
+  [infiniteScrollThrottle]="500"
+  (scrolled)="addItems(10)">
+
+  <seed-item-template *ngFor="let item of items" [name]="item"></seed-item-template>
+</div>
