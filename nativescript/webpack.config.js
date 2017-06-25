@@ -143,6 +143,7 @@ function getPlugins(platform, env) {
             { from: "**/*.jpg" },
             { from: "**/*.png" },
             { from: "**/*.xml" },
+            { from: "assets/**" },
         ], { ignore: ["App_Resources/**"] }),
 
         // Generate a bundle starter script and activate it in package.json
