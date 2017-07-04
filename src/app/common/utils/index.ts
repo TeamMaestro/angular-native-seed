@@ -1,2 +1,2 @@
 export * from './Config';
-export * from './RouterModule';
+export * from './router-module';
