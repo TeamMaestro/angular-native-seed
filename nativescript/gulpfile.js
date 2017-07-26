@@ -36,7 +36,7 @@ gulp.task('resources.Assets', () => {
 });
 
 gulp.task('project.Typescript', () => {
-    return gulp.src([`${SRC}**/*.ts`, '!**/*.tns.*', '!**/*.spec.*'], {follow: true})
+    return gulp.src([`${SRC}**/*.ts`, '!**/*.tns.*', '!**/*.spec.*', 'references.d.ts'], {follow: true})
         // .pipe(debug({title: 'project.Typescript'}))
         .pipe(gulp.dest(DEST));
 });
