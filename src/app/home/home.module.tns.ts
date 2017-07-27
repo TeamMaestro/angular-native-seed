@@ -7,7 +7,10 @@ import { SHARED_MODULES } from './home.common';
     imports: [
         ...SHARED_MODULES
     ],
-    declarations: [HomeComponent]
+    declarations: [HomeComponent],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
 })
 export class HomeModule {
 

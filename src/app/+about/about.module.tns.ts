@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SHARED_MODULES, COMPONENT_DECLARATIONS } from './about.common';
 
 @NgModule({
@@ -8,5 +8,8 @@ import { SHARED_MODULES, COMPONENT_DECLARATIONS } from './about.common';
     declarations: [
         ...COMPONENT_DECLARATIONS
     ],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
 })
 export class AboutModule { }
