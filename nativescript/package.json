@@ -5,7 +5,7 @@
   "nativescript": {
     "id": "com.domain.project",
     "tns-ios": {
-      "version": "3.0.1"
+      "version": "3.1.0"
     },
     "tns-android": {
       "version": "3.0.1"
@@ -67,14 +67,14 @@
     "ios.phone": "npm run prepCLIPhone && tns run ios",
     "android": "npm run prepCLITablet && tns run android",
     "android.phone": "npm run prepCLIPhone && tns run android",
-    "phone-ios-bundle": "npm run prepPhone && tns prepare ios && npm run start-ios-bundle",
-    "tablet-ios-bundle": "npm run prepTablet && tns prepare ios && npm run start-ios-bundle",
-    "build.phone-ios-bundle": "npm run prepPhone && tns prepare ios && npm run build-ios-bundle",
-    "build.tablet-ios-bundle": "npm run prepTablet && tns prepare ios && npm run build-ios-bundle",
-    "phone-android-bundle": "npm run prepPhone && tns prepare android && npm run start-android-bundle",
-    "tablet-android-bundle": "npm run prepTablet && tns prepare android && npm run start-android-bundle",
-    "build.phone-android-bundle": "npm run prepPhone && tns prepare android && npm run build-android-bundle",
-    "build.tablet-android-bundle": "npm run prepTablet && tns prepare android && npm run build-android-bundle",
+    "phone-ios-bundle": "npm run prepPhone && tns prepare ios && npm run start-ios-bundle --uglify",
+    "tablet-ios-bundle": "npm run prepTablet && tns prepare ios && npm run start-ios-bundle --uglify",
+    "build.phone-ios-bundle": "npm run prepPhone && tns prepare ios && npm run build-ios-bundle --uglify",
+    "build.tablet-ios-bundle": "npm run prepTablet && tns prepare ios && npm run build-ios-bundle --uglify",
+    "phone-android-bundle": "npm run prepPhone && tns prepare android && npm run start-android-bundle --uglify",
+    "tablet-android-bundle": "npm run prepTablet && tns prepare android && npm run start-android-bundle --uglify",
+    "build.phone-android-bundle": "npm run prepPhone && tns prepare android && npm run build-android-bundle --uglify",
+    "build.tablet-android-bundle": "npm run prepTablet && tns prepare android && npm run build-android-bundle --uglify",
     "ns-bundle": "ns-bundle",
     "livesync": "gulp tns.Livesync",
     "livesync.phone": "gulp tns.Livesync.Phone",
