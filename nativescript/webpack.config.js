@@ -49,7 +49,10 @@ module.exports = env => {
             modules: [
                 "node_modules/tns-core-modules",
                 "node_modules",
-            ]
+            ],
+            alias: {
+                '~': resolve("./app")
+            }
         },
         node: {
             // Disable node shims that conflict with NativeScript
