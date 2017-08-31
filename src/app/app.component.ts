@@ -19,6 +19,10 @@ export class AppComponent {
         {
             title: 'menu.about',
             link: ['/about']
+        },
+        {
+            title: 'Grid',
+            link: ['/grid']
         }
     ];
 

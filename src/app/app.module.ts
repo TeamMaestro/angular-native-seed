@@ -8,6 +8,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Config } from './common/index';
 import { AppComponent } from './app.component';
 import { SHARED_MODULES } from './app.common';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { GridComponent } from "./grid/grid.component";
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
 
@@ -16,8 +18,9 @@ export function createTranslateLoader(http: Http) {
 }
 
 @NgModule({
-    declarations: [ AppComponent ],
+    declarations: [ AppComponent, GridComponent ],
     imports: [
+        GridModule,
         BrowserAnimationsModule,
         HttpModule,
         TranslateModule.forRoot({
