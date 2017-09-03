@@ -23,11 +23,11 @@
     "@angular/router": "~4.1.0",
     "@ngx-translate/core": "^6.0.1",
     "@ngx-translate/http-loader": "0.0.3",
-    "nativescript-angular": "^3.0.0",
+    "nativescript-angular": "^3.1.0",
     "nativescript-theme-core": "~1.0.2",
     "reflect-metadata": "~0.1.8",
     "rxjs": "~5.3.0",
-    "tns-core-modules": "^3.0.0",
+    "tns-core-modules": "^3.1.0",
     "typescript": "~2.2.0",
     "zone.js": "~0.8.2"
   },
@@ -51,12 +51,13 @@
     "nativescript-dev-android-snapshot": "^0.*.*",
     "nativescript-dev-sass": "^1.1.1",
     "nativescript-dev-typescript": "~0.4.5",
-    "nativescript-dev-webpack": "^0.6.2",
+    "nativescript-dev-webpack": "^0.7.3",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.0.2",
     "typescript": "~2.2.0",
     "webpack": "~2.6.0",
-    "webpack-sources": "~0.2.3"
+    "webpack-sources": "~0.2.3",
+    "webpack-bundle-analyzer": "^2.8.2"
   },
   "scripts": {
     "prepPhone": "gulp build.Phone",
@@ -82,6 +83,7 @@
     "start-android-bundle": "npm run ns-bundle --android --run-app",
     "start-ios-bundle": "npm run ns-bundle --ios --run-app",
     "build-android-bundle": "npm run ns-bundle --android --build-app",
-    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
+    "build-ios-bundle": "npm run ns-bundle --ios --build-app",
+    "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install"
   }
 }
