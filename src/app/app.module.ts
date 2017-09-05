@@ -7,9 +7,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // app
 import { Config } from './common/index';
 import { AppComponent } from './app.component';
-import { SHARED_MODULES } from './app.common';
-import { GridModule } from '@progress/kendo-angular-grid';
-import { GridComponent } from "./grid/grid.component";
+
+import { NoContent } from './no-content';
+import { IssuesModule } from './issues';
+import { DashboardModule } from './dashboard';
+import { ProfileModule } from './profile';
+import { SigninModule } from './signin';
+import { RouterModule } from '@angular/router';
+import { AppRoutes } from './app.routes';
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
 
@@ -18,9 +23,8 @@ export function createTranslateLoader(http: Http) {
 }
 
 @NgModule({
-    declarations: [ AppComponent, GridComponent ],
+    declarations: [ AppComponent ],
     imports: [
-        GridModule,
         BrowserAnimationsModule,
         HttpModule,
         TranslateModule.forRoot({
@@ -30,9 +34,13 @@ export function createTranslateLoader(http: Http) {
                 deps: [Http]
             }
         }),
-        ...SHARED_MODULES
+        DashboardModule,
+        IssuesModule,
+        ProfileModule,
+        SigninModule,
+        RouterModule.forRoot(AppRoutes)
     ],
     providers: [],
-    bootstrap: [ AppComponent ]
+    bootstrap: [ AppComponent ],
 })
 export class AppModule {}
