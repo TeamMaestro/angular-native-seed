@@ -37,7 +37,7 @@ export class IssuesComponent {
             data = data.reduce((agg, curr) => [...agg, ...curr], []).filter(issue => issue.pull_request ? false : true);
             this.allIssues = data;
             this.applyPaging(this.issuesProcessor.filterByMonth(this.allIssues, this.months))
-        })
+        });
     }
 
     onFilterClick(e) {
@@ -54,6 +54,7 @@ export class IssuesComponent {
 
     applyPaging(data) {
         this.issues = data;
+        console.log(this.issues[0]);
         this.view = this.getView(this.skip, this.pageSize);
     }
 
