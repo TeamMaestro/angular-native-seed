@@ -1,0 +1,35 @@
+<div class="row mb-4">
+    <div class="col-sm">
+        <h2>
+            <span class="small text-uppercase text-muted d-block">Statistics</span>
+            {{ rangeStart | date }} - {{ today | date }}
+        </h2>
+    </div>
+    <span class="col-sm-1 hidden-sm-down"></span>
+    <div class="col-sm text-sm-right">
+        <kendo-buttongroup [selection]="'single'">
+            <button kendoButton (click)="onFilterClick(3)" [selected]="true">3 Months</button>
+            <button kendoButton (click)="onFilterClick(6)">6 Months</button>
+            <button kendoButton (click)="onFilterClick(12)">1 Year</button>
+        </kendo-buttongroup>
+    </div>
+</div>
+<kendo-tabstrip (select)="onTabSelect($event)">
+    <kendo-tabstrip-tab [title]="'All Issues'" [selected]="true">
+        <ng-template kendoTabContent>
+            <statistics [issues]="issues" [months]="months"></statistics>
+        </ng-template>
+    </kendo-tabstrip-tab>
+
+    <kendo-tabstrip-tab [title]="'Assigned to Me'">
+        <ng-template kendoTabContent>
+            <statistics [issues]="issues" [months]="months"></statistics>
+        </ng-template>
+    </kendo-tabstrip-tab>
+
+    <kendo-tabstrip-tab [title]="'Created by Me'">
+        <ng-template kendoTabContent>
+            <statistics [issues]="issues" [months]="months"></statistics>
+        </ng-template>
+    </kendo-tabstrip-tab>
+</kendo-tabstrip>

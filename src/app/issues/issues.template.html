@@ -1,0 +1,103 @@
+<div class="row mb-4">
+    <div class="col-sm">
+        <h2>
+            <span class="small text-uppercase text-muted d-block">Issues</span>
+            {{range.from | date}} - {{range.to | date}}
+        </h2>
+    </div>
+    <span class="col-sm-1 hidden-sm-down"></span>
+    <div class="col-sm text-sm-right">
+        <kendo-buttongroup [selection]="'single'">
+            <button kendoButton (click)="onFilterClick(3)" [selected]="true">3 Months</button>
+            <button kendoButton (click)="onFilterClick(6)">6 Months</button>
+            <button kendoButton (click)="onFilterClick(12)">1 Year</button>
+        </kendo-buttongroup>
+    </div>
+</div>
+<kendo-grid
+    [data]="view"
+    [pageSize]="pageSize"
+    [pageable]="{ pageSizes: true }"
+    [skip]="skip"
+    [scrollable]="'none'"
+    (pageChange)='onPageChange($event)'
+    >
+    <kendo-grid-column field="number" title="ID" width="80">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <a href="dataItem.html_url">#{{ dataItem.number }}</a>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="title" title="Title">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <span [ngClass]="{
+              'issue-status': true,
+              'issue-open': dataItem.state === 'open',
+              'issue-closed': dataItem.state !== 'open' }"></span>
+            {{ dataItem.title }}
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="labels" title="Labels" width="100">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <span *ngFor="let label of dataItem.labels" class="tag" [labelClass]="label.name">
+                {{ label.name }}
+            </span>
+        </ng-template>
+    </kendo-grid-column>
+     <kendo-grid-column field="milestone" title="Milestone" width="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+             {{ dataItem.milestone ? dataItem.milestone.title : '' }}
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="assignee" title="Assignee" width="150">
+         <ng-template kendoGridCellTemplate let-dataItem>
+             <img *ngIf="dataItem.assignee" [src]="dataItem.assignee? dataItem.assignee.avatar_url : undefined" [ngStyle]="{'width': '30px', 'height': '30px'}" class="img-circle" />
+            {{ dataItem.assignee ? dataItem.assignee.login : '' }}
+        </ng-template>
+    </kendo-grid-column>
+    <ng-template kendoGridDetailTemplate let-dataItem let-rowIndex="rowIndex">
+        <div class="row my-4">
+            <div class="col-xs">
+                <span class="tag" [ngClass]="{'tag-success': dataItem.state === 'open', 'tag-danger': dataItem.state === 'closed'}">{{ dataItem.state }}</span>
+                <h3 class="h1">
+                    {{ dataItem.title }}
+                    <span class="text-muted">#{{ dataItem.number }}</span>
+                </h3>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-sm-2">
+                <span class="small d-block text-muted">Created on</span>
+                {{ dataItem.created_at | date }}
+            </div>
+            <div *ngIf="dataItem.closed_at" class="col-sm-2">
+                <span class="small d-block text-muted">Closed on</span>
+                {{ dataItem.closed_at | date }}
+            </div>
+            <div class="col-sm-2">
+                <span class="small d-block text-muted">Milestone</span>
+                {{ dataItem.milestone ? dataItem.milestone.title : '' }}
+            </div>
+            <div class="col-sm-2">
+                <span class="small d-block text-muted">Author</span>
+                {{ dataItem.user.login }}
+            </div>
+            <div *ngIf="dataItem.assignee" class="col-sm-2">
+                <span class="small d-block text-muted">Assignee</span>
+                <img [src]="dataItem.assignee? dataItem.assignee.avatar_url : undefined" [ngStyle]="{'width': '30px', 'height': '30px'}" class="img-circle" />
+                {{ dataItem.assignee ? dataItem.assignee.login : '' }}
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-sm-2">
+                <h4 class="small text-muted">Labels</h4>
+                <span *ngFor="let label of dataItem.labels" class="tag" [labelClass]="label.name">
+                    {{ label.name }}
+                </span>
+            </div>
+            <div class="col-sm-8">
+                <h4 class="small text-muted">Description</h4>
+                <markdown [data]="dataItem.body"></markdown>
+            </div>
+        </div>
+    </ng-template>
+</kendo-grid>
