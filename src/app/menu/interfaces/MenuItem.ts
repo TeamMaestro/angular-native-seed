@@ -4,4 +4,7 @@ export interface MenuItem {
 
     link: string[];
 
+    icon: string;
+
+    iconClass: string;
 }

@@ -1,3 +1,5 @@
+@import 'fonts/Ionicons.scss';
+
 /* You can add global styles to this file, and also import other style files */
 body {
     margin:0;
@@ -5,4 +7,9 @@ body {
 }
 .container {
     margin:40px;
+}
+
+.ion-icon {
+    font-family: 'Ionicons';
+    font-style: normal;
 }

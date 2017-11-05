@@ -14,11 +14,15 @@ export class AppComponent {
     menuItems: MenuItem[] = [
         {
             title: 'menu.home',
-            link: ['/home']
+            link: ['/home'],
+            icon: '\uf448',
+            iconClass: 'ion-ios-home'
         },
         {
             title: 'menu.about',
-            link: ['/about']
+            link: ['/about'],
+            icon: '\uf419',
+            iconClass: 'ion-ios-contact'
         }
     ];
 

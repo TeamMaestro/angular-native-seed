@@ -1,3 +1,4 @@
+<Label *ngIf="item" class="ion-icon icon" text="{{ item.icon }}"></Label>
 <Button *ngIf="item"
     [nsRouterLink]="item.link"
     [nsRouterLinkActive]="'active'"
