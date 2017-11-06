@@ -31,6 +31,7 @@ Each platform is run respective to it's folder. View available commands here:
 ## How To's
 - [Integrating Angular Material (`@angular/material`)](https://github.com/TeamMaestro/angular-native-seed/wiki/Integrating-Material-for-Web)
 - [Integrating Ionic Styles & Components - Demo Project @proyecto26](https://github.com/proyecto26/nativescript-ionic-template)
+- [NativeScript with Angular Web Application Conversion](https://nativescripting.com/course/nativescript-with-angular-web-application-conversion)
 
 ## Workspace Options
 - [VSCode WorkSpace Settings](https://github.com/TeamMaestro/angular-native-seed/wiki/Optional:-VSCode-WorkSpace-Settings)
