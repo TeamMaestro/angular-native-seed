@@ -1,5 +1,5 @@
 // -----------------------------------------------------------
-// version 1.00
+// version 1.0.1
 // @author Nathan Walker
 // @author Sean Perkins
 // -----------------------------------------------------------
@@ -12,8 +12,10 @@ var cp = require('child_process');
 var path = require('path');
 
 var webAppPath = './src/app';
+var webFontsPath = './src/fonts';
 var webAssetsPath = './src/assets';
 var nativescriptAppPath = './nativescript/src/app/';
+var nativescriptFontsPath = './nativescript/src/fonts/';
 var nativescriptAssetsPath = './nativescript/src/assets';
 
 // Root SymLink Code for Windows
@@ -35,6 +37,9 @@ console.log("Configuring...");
 try {
     if (fs.existsSync(resolve(nativescriptAppPath))) {
         fs.unlinkSync(resolve(nativescriptAppPath));
+    }
+    if (fs.existsSync(resolve(nativescriptFontsPath))) {
+        fs.unlinkSync(resolve(nativescriptFontsPath));
     }
     if (fs.existsSync(resolve(nativescriptAssetsPath))) {
         fs.unlinkSync(resolve(nativescriptAssetsPath));
@@ -111,6 +116,7 @@ function createSymLink() {
         console.log("Attempting to Symlink", webAppPath, nativescriptAppPath);
     }
     fs.symlinkSync(resolve(webAppPath), resolve(nativescriptAppPath), 'junction');
+    fs.symlinkSync(resolve(webFontsPath), resolve(nativescriptFontsPath), 'junction');
     fs.symlinkSync(resolve(webAssetsPath), resolve(nativescriptAssetsPath), 'junction');
 }
 
