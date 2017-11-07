@@ -37,8 +37,6 @@ yarn.lock
 !symlink.js
 !karma.conf.js
 !protractor.conf.js
-!nativescript/gulpfile.js
-!nativescript/webpack.config.js
 
 # e2e
 /e2e/*.js
