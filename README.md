@@ -6,7 +6,16 @@ Build truly web and native applications using NativeScript and Angular. This see
 - i18n Translations
 - Lazy Loaded Modules
 - Angular CLI // Webpack // Testing
-- Target Phone and Tablet Templates Individually
+- Target Phone and Tablet Templates Individually. The following extensions are supported:
+
+Extension                        | Platform
+-------------------------------- | -----------
+`.{html/scss}`                   | Recommended for Web. Does apply to both platforms when **.tns** equivalent does not exist.
+`.tns.{html/scss}`               | Only for mobile
+`.tns.ios.{html/scss}`           | Only for iOS
+`.tns.android.{html/scss}`       | Only for Android
+`.tns.ios.phone.{html/scss}`     | Only for iOS Phone 
+`.tns.android.phone.{html/scss}` | Only for Android Phone
 - Docker build provided using NGINX to serve web content and load balance reverse proxied backends. (See nginx folder for setup instructions)
 
 ## Getting Started
