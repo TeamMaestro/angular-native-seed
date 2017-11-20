@@ -10,7 +10,7 @@ Build truly web and native applications using NativeScript and Angular. This see
 
 Extension                        | Platform
 -------------------------------- | -----------
-`.{html/scss}`                   | All platforms
+`.{html/scss}`                   | Only for web
 `.tns.{html/scss}`               | Only for mobile
 `.tns.ios.{html/scss}`           | Only for iOS
 `.tns.android.{html/scss}`       | Only for Android
