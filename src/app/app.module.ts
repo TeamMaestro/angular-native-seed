@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Http, HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 // vendor dependencies
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -11,25 +11,26 @@ import { SHARED_MODULES } from './app.common';
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.WEB;
 
-export function createTranslateLoader(http: Http) {
-    return new TranslateHttpLoader(<any>http, './assets/i18n/', '.json');
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-    declarations: [ AppComponent ],
+    declarations: [AppComponent],
     imports: [
         BrowserAnimationsModule,
-        HttpModule,
+        HttpClientModule ,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [Http]
+                useFactory: (HttpLoaderFactory),
+                deps: [HttpClient]
             }
         }),
         ...SHARED_MODULES
     ],
     providers: [],
-    bootstrap: [ AppComponent ]
+    bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
