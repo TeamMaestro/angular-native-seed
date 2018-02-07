@@ -11,6 +11,9 @@
         "nativescript/src/app/**/*.ts": {
             "when": "$(basename).tns.ts"
         },
+        "nativescript/src/app/**/*.sass": {
+            "when": "$(basename).tns.sass"
+        },
         "nativescript/src/app/**/*.spec.ts": true
     },
     "files.watcherExclude": {

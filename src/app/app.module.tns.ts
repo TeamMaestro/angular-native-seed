@@ -1,9 +1,11 @@
 import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from '@angular/core';
-import { Http } from '@angular/http';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+
 // nativescript
-import { NSModuleFactoryLoader } from 'nativescript-angular/router';
-import { NativeScriptHttpModule } from 'nativescript-angular/http';
-import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
+import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 // vendor dependencies
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -11,10 +13,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Config } from './common/index';
 import { AppComponent } from './app.component';
 import { SHARED_MODULES } from './app.common';
-
+import { AppRoutes } from './app.routes';
 Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;
 
-export function createTranslateLoader(http: Http) {
+export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(<any>http, '/assets/i18n/', '.json');
 }
 
@@ -23,13 +25,15 @@ export function createTranslateLoader(http: Http) {
         AppComponent
     ],
     imports: [
-        NativeScriptModule,
-        NativeScriptHttpModule,
+        NativeScriptHttpClientModule,
+        NativeScriptFormsModule,
+        NativeScriptCommonModule,
+        NativeScriptRouterModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [Http]
+                useFactory: (HttpLoaderFactory),
+                deps: [HttpClient]
             }
         }),
         ...SHARED_MODULES
@@ -39,7 +43,6 @@ export function createTranslateLoader(http: Http) {
     ],
     providers: [
         // Allows your {N} application to use lazy-loading
-        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
     ],
     schemas: [
         NO_ERRORS_SCHEMA
