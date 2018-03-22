@@ -9,6 +9,7 @@ export const HomeRoutes: Routes = [
     },
     {
         path: 'about',
-        loadChildren: 'app/+about/about.module#AboutModule'
+        // loadChildren: './app/+about/about.module#AboutModule'
+        loadChildren: '../+about/about.module#AboutModule'
     }
 ];

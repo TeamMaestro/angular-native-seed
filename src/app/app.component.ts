@@ -23,6 +23,7 @@ export class AppComponent {
     ];
 
     constructor(translate: TranslateService) {
+        translate.setTranslation('en', require('../assets/i18n/en.json'));
         translate.setDefaultLang('en');
         translate.use('en');
     }
