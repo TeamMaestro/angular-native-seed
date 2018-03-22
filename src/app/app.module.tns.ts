@@ -1,7 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 // nativescript
-import { NSModuleFactoryLoader } from 'nativescript-angular/router';
 import { NativeScriptHttpModule } from 'nativescript-angular/http';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 // vendor dependencies
@@ -14,7 +13,7 @@ import { SHARED_MODULES } from './app.common';
 
 Config.PLATFORM_TARGET = Config.PLATFORMS.MOBILE_NATIVE;
 
-export function createTranslateLoader(http: Http) {
+export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(<any>http, '/assets/i18n/', '.json');
 }
 
@@ -25,21 +24,19 @@ export function createTranslateLoader(http: Http) {
     imports: [
         NativeScriptModule,
         NativeScriptHttpModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [Http]
-            }
-        }),
+        // HttpClientModule,
+        TranslateModule.forRoot(),
+        // TranslateModule.forRoot({
+        //     loader: {
+        //         provide: TranslateLoader,
+        //         useFactory: (createTranslateLoader),
+        //         deps: [HttpClient]
+        //     }
+        // }),
         ...SHARED_MODULES
     ],
     declarations: [
         AppComponent
-    ],
-    providers: [
-        // Allows your {N} application to use lazy-loading
-        { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
     ],
     schemas: [
         NO_ERRORS_SCHEMA
