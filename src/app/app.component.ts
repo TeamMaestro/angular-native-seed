@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 // app
 import { MenuItem } from './menu/menu.common';
 
+declare const require: any;
+
 @Component({
     moduleId: module.id,
     selector: 'maestro-app',
