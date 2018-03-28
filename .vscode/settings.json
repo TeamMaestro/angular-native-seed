@@ -8,6 +8,9 @@
         "nativescript/src/app/**/*.scss": {
             "when": "$(basename).tns.scss"
         },
+        "nativescript/src/app/**/*.sass": {
+            "when": "$(basename).tns.sass"
+        },
         "nativescript/src/app/**/*.ts": {
             "when": "$(basename).tns.ts"
         },

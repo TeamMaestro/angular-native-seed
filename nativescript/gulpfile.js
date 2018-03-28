@@ -30,7 +30,7 @@ gulp.task('resources.App_Resources', () => {
 });
 
 gulp.task('resources.Assets', () => {
-    return gulp.src([`${SRC}**/*`, `!${SRC}app/`, `!${SRC}test/`, '!**/*.spec.*', '!**/*.js', '!**/*.ts', '!**/*.scss', '!**/*.html'], {follow: true})
+    return gulp.src([`${SRC}**/*`, `!${SRC}app/`, `!${SRC}test/`, '!**/*.spec.*', '!**/*.js', '!**/*.ts', '!**/*.scss', '!**/*.sass', '!**/*.html'], {follow: true})
         // .pipe(debug({title: 'resources.Assets'}))
         .pipe(gulp.dest(DEST));
 });
@@ -42,7 +42,7 @@ gulp.task('project.Typescript', () => {
 });
 
 gulp.task('project.Styles', () => {
-    return gulp.src([`${SRC}**/*.scss`, '!**/*.tns.*'], {follow: true})
+    return gulp.src([`${SRC}**/*.scss`, `${SRC}**/*.sass`, '!**/*.tns.*'], {follow: true})
         .pipe(gulp.dest(DEST));
 });
 
@@ -61,7 +61,7 @@ gulp.task('tns.Templates', () => {
 });
 
 gulp.task('tns.Styles', () => {
-    return gulp.src([`${SRC}**/*.tns.scss`, `${SRC}**/*.tns.ios.scss`, `${SRC}**/*.tns.android.scss`], {follow: true})
+    return gulp.src([`${SRC}**/*.tns.scss`, `${SRC}**/*.tns.ios.scss`, `${SRC}**/*.tns.android.scss`, `${SRC}**/*.tns.sass`, `${SRC}**/*.tns.ios.sass`, `${SRC}**/*.tns.android.sass`], {follow: true})
         .pipe(rename(removeTns))
         // .pipe(debug({title: 'tns.Styles'}))
         .pipe(gulp.dest(DEST, {overwrite: true}));
@@ -84,7 +84,7 @@ gulp.task('phone.Templates', () => {
 });
 
 gulp.task('phone.Styles', () => {
-    return gulp.src([`${SRC}**/*.tns.phone.scss`, `${SRC}**/*.tns.ios.phone.scss`, `${SRC}**/*.tns.android.phone.scss`], {follow: true})
+    return gulp.src([`${SRC}**/*.tns.phone.scss`, `${SRC}**/*.tns.ios.phone.scss`, `${SRC}**/*.tns.android.phone.scss`, `${SRC}**/*.tns.phone.sass`, `${SRC}**/*.tns.ios.phone.sass`, `${SRC}**/*.tns.android.phone.sass`], {follow: true})
         .pipe(rename(removeTns))
         .pipe(rename(removePhone))
         // .pipe(debug({title: 'phone.Styles'}))
@@ -116,11 +116,12 @@ gulp.task(
 );
 
 /**
- * For non webpack builds, scss needs to be converted to css
+ * For non webpack builds, scss/sass needs to be converted to css
  */
 gulp.task('tns.ComponentStyles', () => {
     return gulp.src([`${DEST}/**/*.component.ts`], {follow: true})
         .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
+        .pipe(replace('.sass\'', '.css\'', { logs: { enabled: false }}))
         // .pipe(debug({title: 'tns.ComponentStyles'}))
         .pipe(gulp.dest(DEST, {overwrite: true}));
 });
@@ -142,20 +143,21 @@ gulp.task(
 );
 
 gulp.task('tns.Livesync', () => {
-    return gulp.watch([`${SRC}**/*.tns.html`, `${SRC}/**/*.tns.scss`, `${SRC}/**/*.component.ts`])
+    return gulp.watch([`${SRC}**/*.tns.html`, `${SRC}/**/*.tns.scss`, `${SRC}/**/*.tns.phone.sass`, `${SRC}/**/*.component.ts`])
         .on('change', (file) => {
             var outputDest = file.replace(SRC, DEST);
             outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
             gulp.src([file])
                 .pipe(rename(removeTns))
                 .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
+                .pipe(replace('.sass\'', '.css\'', { logs: { enabled: false }}))
                 .pipe(debug({title: 'tns.Livesync'}))
                 .pipe(gulp.dest(outputDest, {overwrite: true}));
         });
 });
 
 gulp.task('tns.Livesync.Phone', () => {
-    return gulp.watch([`${SRC}**/*.tns.phone.html`, `${SRC}/**/*.tns.phone.scss`, `${SRC}/**/*.component.ts`])
+    return gulp.watch([`${SRC}**/*.tns.phone.html`, `${SRC}/**/*.tns.phone.scss`, `${SRC}/**/*.tns.phone.sass`, `${SRC}/**/*.component.ts`])
         .on('change', (file) => {
             var outputDest = file.replace(SRC, DEST);
             outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
@@ -163,6 +165,7 @@ gulp.task('tns.Livesync.Phone', () => {
                 .pipe(rename(removeTns))
                 .pipe(rename(removePhone))
                 .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false }}))
+                .pipe(replace('.sass\'', '.css\'', { logs: { enabled: false }}))
                 .pipe(debug({title: 'tns.Livesync.Phone'}))
                 .pipe(gulp.dest(outputDest, {overwrite: true}));
         });
