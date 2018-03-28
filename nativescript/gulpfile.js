@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const rename = require('gulp-rename');
-const replace = require('gulp-string-replace')
+const replace = require('gulp-string-replace');
 const debug = require('gulp-debug');
 const del = require('del');
 
@@ -144,7 +144,7 @@ gulp.task(
 gulp.task('tns.Livesync', () => {
     return gulp.watch([`${SRC}**/*.tns.html`, `${SRC}/**/*.tns.scss`, `${SRC}/**/*.component.ts`])
         .on('change', (file) => {
-            var outputDest = file.replace(SRC, DEST);
+            let outputDest = file.replace(SRC, DEST);
             outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
             gulp.src([file])
                 .pipe(rename(removeTns))
@@ -157,7 +157,7 @@ gulp.task('tns.Livesync', () => {
 gulp.task('tns.Livesync.Phone', () => {
     return gulp.watch([`${SRC}**/*.tns.phone.html`, `${SRC}/**/*.tns.phone.scss`, `${SRC}/**/*.component.ts`])
         .on('change', (file) => {
-            var outputDest = file.replace(SRC, DEST);
+            let outputDest = file.replace(SRC, DEST);
             outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
             gulp.src([file])
                 .pipe(rename(removeTns))
