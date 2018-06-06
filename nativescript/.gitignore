@@ -13,6 +13,8 @@ app/**/*
 
 src/app
 src/assets
+src/fonts
+
 src/node_modules
 src/platforms
 
