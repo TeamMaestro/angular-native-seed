@@ -1,8 +1,11 @@
 Button {
     margin:0 20;
     color:#fff;
+    background: #2196F3;
     font-size:15px;
     font-weight:bold;
+    border-color: transparent;
+    border-width: 1;
     &.active {
         color: #FFEB3B;
     }

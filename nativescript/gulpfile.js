@@ -3,7 +3,7 @@ const rename = require('gulp-rename');
 const replace = require('gulp-string-replace')
 const debug = require('gulp-debug');
 const del = require('del');
-
+const flatten = require('gulp-flatten');
 const SRC = 'src/';
 const DEST = 'app/';
 
@@ -18,9 +18,14 @@ function removePhone(path) {
 gulp.task('clean.Dist', () => {
     return del([
         'app/**/*',
+
         '!**/vendor.ts',
         '!**/vendor-platform.android.ts',
-        '!**/vendor-platform.ios.ts'
+        '!**/vendor-platform.ios.ts',
+        '!**/_app.-common.scss',
+        '!**/app.android.scdd',
+        '!**/app.ios.scss',
+        '!**/scss/**'
     ]);
 });
 
@@ -28,6 +33,18 @@ gulp.task('resources.App_Resources', () => {
     return gulp.src(['App_Resources/**/*'], { follow: true })
         .pipe(gulp.dest(`${DEST}App_Resources`));
 });
+
+gulp.task('copy_www', () => {
+    return gulp.src(['www/**/*'], { follow: true })
+        .pipe(debug({ title: 'copy_www' }))
+        .pipe(gulp.dest(`${DEST}www`));
+});
+
+
+// gulp.task('resources.SCSS', () => {
+//     return gulp.src(['scss/**/*'], { follow: true })
+//         .pipe(gulp.dest(`${DEST}scss`));
+// });
 
 gulp.task('resources.Assets', () => {
     return gulp.src([`${SRC}**/*`, `!${SRC}app/`, `!${SRC}test/`, '!**/*.spec.*', '!**/*.js', '!**/*.ts', '!**/*.scss', '!**/*.sass', '!**/*.html'], { follow: true })
@@ -96,6 +113,8 @@ gulp.task(
     gulp.series(
         'clean.Dist',
         'resources.App_Resources',
+        'copy_www',
+        // 'resources.SCSS',
         'resources.Assets',
         'project.Typescript',
         'project.Styles',
@@ -143,15 +162,27 @@ gulp.task(
 );
 
 gulp.task('tns.Livesync', () => {
-    return gulp.watch([`${SRC}**/*.tns.html`, `${SRC}/**/*.tns.scss`, `${SRC}/**/*.tns.phone.sass`, `${SRC}/**/*.component.ts`])
+    return gulp.watch([`../${SRC}**/*.common.ts`, `../${SRC}**/*.tns.ts`, `../${SRC}**/*.tns.html`, `../${SRC}**/*.service.ts`,
+    `../${SRC}**/*.tns.scss`, `../${SRC}**/*.scss`, `../${SRC}**/*.component.ts`, `../${SRC}**/*.routes.ts`,`../${SRC}**/*.reducer.ts`,
+    `../${SRC}**/*.index.ts`, `./www/**/*`])
         .on('change', (file) => {
-            var outputDest = file.replace(SRC, DEST);
-            outputDest = outputDest.substring(0, outputDest.lastIndexOf('/'));
+            // console.log('original File :- ' + file);
+            // console.log('step 1 :-  ' + file.substring(0, file.lastIndexOf('\\') + 1));
+            // console.log('step 2 :-  ' + file.substring(0, file.lastIndexOf('\\') + 1).replace(SRC.substring(0, SRC.length - 1), 'app\\'));
+            // console.log('step 3 :-  ' + file.substring(0, file.lastIndexOf('\\') + 1).replace(SRC.substring(0, SRC.length - 1), 'app\\').replace('..\\', ''));
+            var outputDest = file.substring(0, file.lastIndexOf('\\') + 1).replace(SRC.substring(0, SRC.length - 1), 'app\\').replace('..\\', '');
+            // var outputDest = 'app\\';
+            // console.log('isWWW :- ', outputDest === 'www\\');
+            if (outputDest === 'www\\') {
+                outputDest = 'app\\';
+            }
+            // console.log('final output :-   ' + outputDest);
             gulp.src([file])
                 .pipe(rename(removeTns))
-                .pipe(replace('.scss\'', '.css\'', { logs: { enabled: false } }))
-                .pipe(replace('.sass\'', '.css\'', { logs: { enabled: false } }))
+                .pipe(replace('.scss\'', '.css\'', { logs: { enabled: true } }))
+                .pipe(flatten())
                 .pipe(debug({ title: 'tns.Livesync' }))
+                .pipe(debug({ title: 'out ' + outputDest }))
                 .pipe(gulp.dest(outputDest, { overwrite: true }));
         });
 });
