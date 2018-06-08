@@ -1,4 +1,4 @@
-const { resolve, join  } = require("path");
+const { resolve, join } = require("path");
 
 const webpack = require("webpack");
 const nsWebpack = require("nativescript-dev-webpack");
@@ -14,7 +14,7 @@ module.exports = env => {
         throw new Error("You need to provide a target platform!");
     }
     const platforms = ["ios", "android"];
-    const { snapshot, uglify, report, aot } = env;
+    const { snapshot, uglify, report, aot, prod, janssen } = env;
     const ngToolsWebpackOptions = { tsConfigPath: "tsconfig.json" };
 
     const config = {
@@ -68,10 +68,12 @@ module.exports = env => {
                 { test: /\.scss$/, exclude: /\/app\.scss$/, use: ["raw-loader", "resolve-url-loader", "sass-loader"] },
 
                 // Compile TypeScript files with ahead-of-time compiler.
-                { test: /.ts$/, use: [
-                    "nativescript-dev-webpack/moduleid-compat-loader",
-                    { loader: "@ngtools/webpack", options: ngToolsWebpackOptions },
-                ]},
+                {
+                    test: /.ts$/, use: [
+                        "nativescript-dev-webpack/moduleid-compat-loader",
+                        { loader: "@ngtools/webpack", options: ngToolsWebpackOptions },
+                    ]
+                },
             ],
         },
         plugins: [
@@ -81,16 +83,17 @@ module.exports = env => {
             }),
             // Define useful constants like TNS_WEBPACK
             new webpack.DefinePlugin({
-                "global.TNS_WEBPACK": "true",
+                "global.TNS_WEBPACK": "true"
             }),
             // Copy assets to out dir. Add your own globs as needed.
             new CopyWebpackPlugin([
-                { from: "App_Resources/**" },
+                { from: "css/**" },
                 { from: "fonts/**" },
                 { from: "**/*.jpg" },
                 { from: "**/*.png" },
                 { from: "**/*.xml" },
-            ]),
+                { from: "assets/**" },
+            ], { ignore: ["App_Resources/**"] }),
             // Generate a bundle starter script and activate it in package.json
             new nsWebpack.GenerateBundleStarterPlugin([
                 "./vendor",
@@ -101,7 +104,7 @@ module.exports = env => {
             // AngularCompilerPlugin with augmented NativeScript filesystem to handle platform specific resource resolution.
             new nsWebpack.NativeScriptAngularCompilerPlugin(
                 Object.assign({
-                    entryModule: resolve(__dirname, "app/app.module#AppModule"),
+                    entryModule: resolve(__dirname, "app/app/app.module#AppModule"),
                     skipCodeGeneration: !aot,
                     platformOptions: {
                         platform,
@@ -130,7 +133,7 @@ module.exports = env => {
             projectRoot: __dirname,
             webpackConfig: config,
             targetArchs: ["arm", "arm64", "ia32"],
-            tnsJavaClassesOptions: { packages: ["tns-core-modules" ] },
+            tnsJavaClassesOptions: { packages: ["tns-core-modules"] },
             useLibs: false
         }));
     }

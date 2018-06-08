@@ -4,11 +4,11 @@
   "repository": "<fill-your-repository-here>",
   "nativescript": {
     "id": "com.domain.project",
-    "tns-android": {
-      "version": "3.5.0-rc-2018.1.8.1"
-    },
     "tns-ios": {
-      "version": "3.5.0-rc-2018-01-08-02"
+      "version": "3.1.0"
+    },
+    "tns-android": {
+      "version": "3.0.1"
     }
   },
   "dependencies": {
@@ -21,22 +21,21 @@
     "@angular/platform-browser": "~5.2.0",
     "@angular/platform-browser-dynamic": "~5.2.0",
     "@angular/router": "~5.2.0",
-    "@ngx-translate/core": "~9.1.1",
-    "@ngx-translate/http-loader": "~2.0.1",
+    "@ngx-translate/core": "^9.1.1",
+    "@ngx-translate/http-loader": "2.0.1",
     "nativescript-angular": "^5.2.0",
-    "nativescript-theme-core": "~1.0.2",
+    "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "~0.1.8",
     "rxjs": "^5.5.0",
     "tns-core-modules": "^3.4.0",
-    "typescript": "~2.6.0",
     "zone.js": "^0.8.16"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~5.2.0",
     "@ngtools/webpack": "~1.8.2",
     "@types/jasmine": "^2.5.47",
-    "babel-traverse": "6.25.0",
-    "babel-types": "6.25.0",
+    "babel-traverse": "6.26.0",
+    "babel-types": "6.26.0",
     "babylon": "6.17.4",
     "copy-webpack-plugin": "~4.0.1",
     "css-loader": "~0.28.7",
@@ -48,18 +47,19 @@
     "gulp-string-replace": "^0.4.0",
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.0",
-    "nativescript-dev-sass": "^1.1.1",
-    "nativescript-dev-typescript": "^0.6.0",
-    "nativescript-dev-webpack": "^0.9.0",
-    "nativescript-worker-loader": "~0.8.1",
+    "nativescript-dev-android-snapshot": "^0.*.*",
+    "nativescript-dev-sass": "^1.3.5",
+    "nativescript-dev-webpack": "~0.9.0",
+    "nativescript-dev-typescript": "~0.6.0",
+    "typescript": "~2.6.2",
     "raw-loader": "~0.5.1",
     "resolve-url-loader": "~2.1.0",
-    "sass-loader": "~6.0.6",
-    "typescript": "~2.4.2",
-    "webpack": "~3.8.1",
+    "webpack": "~3.10.0",
+    "webpack-sources": "^1.0.2",
     "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-sources": "~1.0.1",
-    "uglifyjs-webpack-plugin": "~1.1.6"
+    "nativescript-worker-loader": "~0.8.1",
+    "uglifyjs-webpack-plugin": "~1.1.6",
+    "sass-loader": "~6.0.6"
   },
   "scripts": {
     "prepPhone": "gulp build.Phone",
@@ -70,16 +70,22 @@
     "ios.phone": "npm run prepCLIPhone && tns run ios",
     "android": "npm run prepCLITablet && tns run android",
     "android.phone": "npm run prepCLIPhone && tns run android",
-    "phone-ios-bundle": "npm run prepPhone && tns prepare ios && tns run ios --bundle --env.aot --env.uglify",
-    "tablet-ios-bundle": "npm run prepTablet && tns prepare ios && tns run ios --bundle --env.aot --env.uglify",
-    "build.phone-ios-bundle": "npm run prepPhone && tns prepare ios && tns build ios --bundle --env.aot --env.uglify",
-    "build.tablet-ios-bundle": "npm run prepTablet && tns prepare ios && tns build ios --bundle --env.aot --env.uglify",
-    "phone-android-bundle": "npm run prepPhone && tns prepare android && tns run android --bundle --env.aot --env.uglify",
-    "tablet-android-bundle": "npm run prepTablet && tns prepare android && tns run android --bundle --env.aot --env.uglify",
-    "build.phone-android-bundle": "npm run prepPhone && tns prepare android && tns build android --bundle --env.aot --env.uglify",
-    "build.tablet-android-bundle": "npm run prepTablet && tns prepare android && tns build android --bundle --env.aot --env.uglify",
+    "phone-ios-bundle": "npm run prepPhone && tns prepare ios && npm run start-ios-bundle --uglify",
+    "tablet-ios-bundle": "npm run prepTablet && tns prepare ios && npm run start-ios-bundle --uglify",
+    "build.phone-ios-bundle": "npm run prepPhone && tns prepare ios && npm run build-ios-bundle --uglify",
+    "build.tablet-ios-bundle": "npm run prepTablet && tns prepare ios && npm run build-ios-bundle --uglify",
+    "phone-android-bundle": "npm run prepPhone && tns prepare android && npm run start-android-bundle --uglify",
+    "tablet-android-bundle": "npm run prepTablet && tns prepare android && npm run start-android-bundle --uglify",
+    "build.phone-android-bundle": "npm run prepPhone && tns prepare android && npm run build-android-bundle --uglify",
+    "build.tablet-android-bundle": "npm run prepTablet && tns prepare android && npm run build-android-bundle --uglify",
+    "ns-bundle": "ns-bundle",
     "livesync": "gulp tns.Livesync",
     "livesync.phone": "gulp tns.Livesync.Phone",
-    "publish-ios-bundle": "tns publish ios --bundle --env.aot --env.uglify"
+    "publish-ios-bundle": "tns run ios --bundle --publish-app",
+    "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
+    "start-android-bundle": "tns run android --bundle",
+    "start-ios-bundle": "tns run ios --bundle",
+    "build-android-bundle": "tns build android --bundle",
+    "build-ios-bundle": "tns build ios --bundle"
   }
 }

@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 // app
 import { MenuItem } from './menu/menu.common';
 
+declare const require: any;
+
 @Component({
     moduleId: module.id,
     selector: 'maestro-app',
@@ -23,6 +25,7 @@ export class AppComponent {
     ];
 
     constructor(translate: TranslateService) {
+        translate.setTranslation('en', require('../assets/i18n/en.json'));
         translate.setDefaultLang('en');
         translate.use('en');
     }
